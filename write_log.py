@@ -7,7 +7,7 @@ import collections
 
 global file_name
 
-file_name = '/home/urp/experiment/testtest.txt'
+file_name = '/home/urp/experiment/log_MINUK_210110.txt'
 
 def write_log(action, speed, obj, catching_dir, pos, time_diff):
     log = open(file_name, 'a')
@@ -44,8 +44,10 @@ def write_log(action, speed, obj, catching_dir, pos, time_diff):
             speed_str = "150"
         elif (speed == 2):
             speed_str = "300"
+        elif (speed == 3):
+            speed_str = "700"
         else:
-            speed_str = "1000"
+            speed_str = "1200"
 
         if (catching_dir == 1):
             catching_dir_str = "top"
@@ -92,8 +94,10 @@ def write_log(action, speed, obj, catching_dir, pos, time_diff):
         speed_str = "150"
     elif (speed == 2):
         speed_str = "300"
+    elif (speed == 3):
+        speed_str = "700"
     else:
-        speed_str = "1000"
+        speed_str = "1200"
 
     if (obj == 1):
         obj_str = "bottle"

@@ -166,7 +166,9 @@ def input_work(speed, catching_dir, pos, job):
     elif (speed == 2):
         y.set_v(300)
     elif (speed == 3):
-        y.set_v(1000)
+        y.set_v(700)
+    elif (speed == 4):
+        y.set_v(1200)
 
     y.reset_home()
 
@@ -211,7 +213,7 @@ if __name__ == '__main__':
     # main_work()
     
     y.reset_home()
-    # y.calibrate_grippers()
+    y.calibrate_grippers()
     y.open_grippers()
     
     if os.path.isfile(write_log.file_name):
@@ -224,7 +226,8 @@ if __name__ == '__main__':
         pass
     else:
         f = open('random_test0.txt', 'w')
-        rand_list = [(1, 1, 1, 2), (1, 2, 3, 1), (1, 3, 2, 2), (2, 1, 1, 1), (2, 2, 3, 2), (2, 3, 2, 2)]
+        rand_list = [(1, 1, 1, 2), (1, 2, 3, 1), (2, 1, 1, 1), (2, 2, 3, 2),
+                     (3, 1, 3, 1), (3, 3, 2, 2), (4, 1, 1, 1), (4, 3, 2, 2)]
         used_list = []
 
         for i in range (len(rand_list)):
@@ -247,7 +250,7 @@ if __name__ == '__main__':
         total_line = file_len(write_log.file_name)
         case_num = - (- total_line / 3) + 1
 
-        if (case_num > 6):
+        if (case_num > 8):
             break
 
         f = open('random_test0.txt', 'r')
@@ -264,7 +267,7 @@ if __name__ == '__main__':
         print(case_num)
         input_work(speed, catching_dir, pos, job)
 
-        # raw_input("Press Enter to continue...")
+        raw_input("Press Enter to continue...")
     
     
     write_log.write_log(3, None, 0, None, None, time_diff)

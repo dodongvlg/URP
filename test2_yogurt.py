@@ -167,7 +167,9 @@ def input_work(speed, catching_dir, pos):
     elif (speed == 2):
         y.set_v(300)
     elif (speed == 3):
-        y.set_v(1000)
+        y.set_v(700)
+    elif (speed == 4):
+        y.set_v(1200)
 
     y.reset_home()
     write_log.write_log(1, speed, 2, catching_dir, pos, time_diff)
@@ -217,7 +219,9 @@ if __name__ == '__main__':
     else:
         f = open('random_test2.txt', 'w')
         rand_list = [(1, 1, 1), (1, 1, 2), (1, 1, 3), (1, 2, 1), (1, 2, 2), (1, 2, 3), (1, 3, 1), (1, 3, 2), (1, 3, 3),
-                     (3, 1, 1), (3, 1, 2), (3, 1, 3), (3, 2, 1), (3, 2, 2), (3, 2, 3), (3, 3, 1), (3, 3, 2), (3, 3, 3)]
+                     (2, 1, 1), (2, 1, 2), (2, 1, 3), (2, 2, 1), (2, 2, 2), (2, 2, 3), (2, 3, 1), (2, 3, 2), (2, 3, 3),
+                     (3, 1, 1), (3, 1, 2), (3, 1, 3), (3, 2, 1), (3, 2, 2), (3, 2, 3), (3, 3, 1), (3, 3, 2), (3, 3, 3),
+                     (4, 1, 1), (4, 1, 2), (4, 1, 3), (4, 2, 1), (4, 2, 2), (4, 2, 3), (4, 3, 1), (4, 3, 2), (4, 3, 3)]
         used_list = []
 
         for i in range (len(rand_list)):
@@ -241,7 +245,7 @@ if __name__ == '__main__':
         total_line = file_len(write_log.file_name)
         case_num = - (- (total_line - zero_line) / 3) + 1
 
-        if (case_num > 18):
+        if (case_num > 24):
             break
 
         f = open('random_test2.txt', 'r')
