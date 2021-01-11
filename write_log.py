@@ -19,9 +19,9 @@ def write_log(action, obj, speed, catching_dir, pos, time_diff):
         action_str = "giving"
     elif (action == 3):
         action_str = "resting"
+    elif (action == 4):
+        action_str = "end"
     elif (action == 5):
-        action_str = "ending"
-    elif (action == 6):
         action_str = "ADDING_NULL"
     else:
         action_str = None
