@@ -1,4 +1,5 @@
 import numpy as np
+import write_log
 
 def opt_sigmoid(x):
     temp = x - 3.5
@@ -32,6 +33,79 @@ def opt_log(x):
         temp = np.log(temp)
         temp *= -0.75
         return temp
+
+def speed_optimizer():
+    f = open('log_MINUK_210110.txt')
+    speed_lines = f.readlines()
+    f.close()
+
+    f = open(write_log.file_name.split('.')[0] + '_score.txt')
+    score_lines = f.readlines()
+    f.close()
+
+    speed_names = ['b_c', 'b_g', 'w_c', 'w_g', 'p_c', 'p_g']
+    score_names = ['b_c_score', 'b_g_score', 'w_c_score', 'w_g_score', 'p_c_score', 'p_g_score']
+    new_speeds = []
+
+    for i in speed_names:
+        vars()[str(i)] = []
+
+    for i in score_names:
+        vars()[str(i)] = []
+
+    for line in speed_lines:
+        if ('bottle' in line):
+            if ('catching' in line):
+                vars()['b_c'].append(int(line.split(', ')[1]))
+            elif ('giving' in line):
+                vars()['b_g'].append(int(line.split(', ')[1]))
+        elif ('water' in line):
+            if ('catching' in line):
+                vars()['w_c'].append(int(line.split(', ')[1]))
+            elif ('giving' in line):
+                vars()['w_g'].append(int(line.split(', ')[1]))
+        elif ('plate' in line):
+            if ('catching' in line):
+                vars()['p_c'].append(int(line.split(', ')[1]))
+            elif ('giving' in line):
+                vars()['p_g'].append(int(line.split(', ')[1]))
+
+    for line in score_lines:
+        if ('catching, bottle' in line):
+            vars()['b_c_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('giving, bottle' in line):
+            vars()['b_g_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('catching, water' in line):
+            vars()['w_c_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('giving, water' in line):
+            vars()['w_g_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('catching, plate' in line):
+            vars()['p_c_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('giving, plate' in line):
+            vars()['p_g_score'].append(float(line.split(', ')[-1].split(']')[0]))
+
+    for i in speed_names:
+        if (len(vars()[str(i)]) != 0):
+            vars()['last_' + str(i)] = vars()[str(i)][-1]
+        else:
+            vars()['last_' + str(i)] = 300
+
+    for i in score_names:
+        if (len(vars()[str(i)]) != 0):
+            vars()[str(i)] = vars()[str(i)][-1]
+        else:
+            vars()[str(i)] = 3.5
+        print(str(i) + ' is', vars()[str(i)])
+
+    for i in speed_names:
+        temp_speed = vars()['last_' + str(i)] + round(150 * opt_log(vars()[str(i) + '_score']))
+        vars()['new_' + str(i)] = int(np.median([150, 1500, temp_speed]))
+        print('last_' + str(i) + ' is', vars()['last_' + str(i)], ', new_' + str(i) + ' is', vars()['new_' + str(i)])
+
+    for i in speed_names:
+        new_speeds.append(vars()['new_' + str(i)])
+
+    return new_speeds
 
 if __name__ == '__main__':
     pass
