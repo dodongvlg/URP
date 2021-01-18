@@ -38,7 +38,7 @@ def write_log(action, obj, speed, catching_dir, pos, time_diff):
     if (obj == 1):
         obj_str = "bottle"
     elif (obj == 2):
-        obj_str = "fullbottle"
+        obj_str = "water"
     elif (obj == 3):
         obj_str = "plate"
     else:

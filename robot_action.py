@@ -109,7 +109,7 @@ def bottle_give(self, catching_dir, pos):
             time.sleep(3)
             self.right.goto_pose(RigidTransform(translation = [0.6, 0, 0.2], rotation = right_front_rotation))
 
-def fullbottle_catch(self, catching_dir, pos):
+def water_catch(self, catching_dir, pos):
     if (pos == 3):
         if (catching_dir == 1):
             self.right.goto_pose(RigidTransform(translation = [0.28, 0, 0.2], rotation = right_top_rotation))
@@ -147,7 +147,7 @@ def fullbottle_catch(self, catching_dir, pos):
         self.right.close_gripper()
         self.right.goto_pose(RigidTransform(translation = [0.32, 0, 0.2], rotation = right_front_rotation))
 
-def fullbottle_give(self, catching_dir, pos):
+def water_give(self, catching_dir, pos):
     if (catching_dir == 1): # top
         if (pos == 1):
             self.right.goto_pose(RigidTransform(translation = [0.53, 0, 0.2], rotation = right_top_rotation))
