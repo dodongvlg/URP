@@ -7,7 +7,7 @@ import collections
 
 global file_name
 
-file_name = 'log_MINUK_210118.txt'
+file_name = 'log_MINUK_210120.txt'
 
 def write_log(action, obj, speed, catching_dir, pos, time_diff):
     log = open(file_name, 'a')
@@ -35,7 +35,7 @@ def write_log(action, obj, speed, catching_dir, pos, time_diff):
     ############################## OBJECT ##############################
     if (obj == 0):
         obj_str = "train"
-    if (obj == 1):
+    elif (obj == 1):
         obj_str = "bottle"
     elif (obj == 2):
         obj_str = "water"

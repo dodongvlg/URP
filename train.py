@@ -29,12 +29,28 @@ if __name__ == '__main__':
     ####################################################
     train_num = input("Enter number for traning : ")
 
-    for i in range (train_num):
+    f = open(write_log.file_name, 'r')
+    lines = f.readlines()
+    f.close()
+
+    count = 0
+
+    for line in lines:
+        if 'catching' in line:
+            count += 1
+    
+    while (count < train_num):
         catching_speed = random.randint(150, 1500)
         giving_speed = random.randint(150, 1500)
         catching_dir = random.randint(1, 3)
         pos = random.randint(1, 3)
         job = random.randint(1, 2)
+
+        if (job == 1 and pos == 3):
+            continue
+
+        count += 1
+        print("Train count : %d" %count)
 
         if (job == 1):
             y.set_v(catching_speed)

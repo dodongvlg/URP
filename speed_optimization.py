@@ -35,7 +35,7 @@ def opt_log(x):
         return temp
 
 def speed_optimizer():
-    f = open('log_MINUK_210110.txt')
+    f = open(write_log.file_name)
     speed_lines = f.readlines()
     f.close()
 

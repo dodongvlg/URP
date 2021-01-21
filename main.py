@@ -69,17 +69,20 @@ if __name__ == '__main__':
     # input_work_water(c_s, g_s, 2, 2)
     # input_work_plate(c_s, g_s, 3, 2)
 
-    temp = 1
-
-    choice = raw_input("Choose task to do (1: speed, 2: position) : ")
+    choice = raw_input("Choose task to do (1: speed with feedback, 2: speed without feedback, 3: position) : ")
 
     if (choice == '1'):
+        count = 0
+        temp = 1
         while (True):
+            if (count >= 10):
+                break
             f = open(write_log.file_name.split('.')[0] + '_score.txt')
             num_lines = sum(1 for line in f)
             f.close()
-
             if ((temp == 1) or ((num_lines % 6 == 0) and (num_lines > temp))):
+                count += 1
+                print("Test count : %d" %count)
                 temp = num_lines
                 [b_c, b_g, w_c, w_g, p_c, p_g] = speed_optimization.speed_optimizer()
                 input_work_bottle(b_c, b_g, 2, 2)
@@ -89,12 +92,22 @@ if __name__ == '__main__':
                 input_work_plate(p_c, p_g, 3, 2)
                 raw_input("Press Enter to continue...")
                 y.reset_home()
-            else:
-                print("Waiting for score...")
-                time.sleep(5)
-                continue
+
+    if (choice == '2'):
+        count = 0
+        for i in range (10):
+            count += 1
+            print("Train count : %d" %count)
+            [b_c, b_g, w_c, w_g, p_c, p_g] = [300, 300, 300, 300, 300, 300]
+            input_work_bottle(b_c, b_g, 2, 2)
+            raw_input("Press Enter to continue...")
+            input_work_water(w_c, w_g, 2, 2)
+            raw_input("Press Enter to continue...")
+            input_work_plate(p_c, p_g, 3, 2)
+            raw_input("Press Enter to continue...")
+            y.reset_home()
     
-    elif (choice == '2'):
+    elif (choice == '3'):
         [b_c, b_g, w_c, w_g, p_c, p_g] = speed_optimization.speed_optimizer()
         input_work_bottle(b_c, b_g, 2, 1)
         raw_input("Press Enter to continue...")
