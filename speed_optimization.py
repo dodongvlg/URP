@@ -34,6 +34,27 @@ def opt_log(x):
         temp *= -0.75
         return temp
 
+def opt_points(x):
+    sign_num = x % 10
+    amp_num = x // 10
+
+    sign = 0
+    amp = 0
+
+    if sign_num == 1:
+        sign = -1
+    elif sign_num == 2:
+        sign = 0
+    elif sign_num == 3:
+        sign = 1
+    
+    if amp_num == 1:
+        amp = 200
+    if amp_num == 2:
+        amp = 50
+
+    return sign * amp
+
 def speed_optimizer():
     f = open(write_log.file_name)
     speed_lines = f.readlines()
@@ -108,4 +129,4 @@ def speed_optimizer():
     return new_speeds
 
 if __name__ == '__main__':
-    pass
+    speed_optimizer()

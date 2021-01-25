@@ -93,7 +93,7 @@ if __name__ == '__main__':
                 raw_input("Press Enter to continue...")
                 y.reset_home()
 
-    if (choice == '2'):
+    elif (choice == '2'):
         count = 0
         for i in range (10):
             count += 1

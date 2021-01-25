@@ -86,9 +86,10 @@ def bottle_give(self, catching_dir, pos):
             self.right.open_gripper()
             self.right.goto_pose(RigidTransform(translation = [0.47, 0.04, 0.3], rotation = right_side_rotation))
         elif (pos == 2):
-            self.right.goto_pose(RigidTransform(translation = [0.57, 0.04, 0.3], rotation = right_side_rotation))
+            self.right.goto_pose(RigidTransform(translation = [0.63, 0.04, 0.2], rotation = right_side_rotation))
             time.sleep(3)
             self.right.open_gripper()
+            self.right.goto_pose(RigidTransform(translation = [0.63, 0.04, 0.3], rotation = right_side_rotation))
         else: # push
             self.right.goto_pose(RigidTransform(translation = [0.47, 0.04, 0.07], rotation = right_side_rotation))
             time.sleep(3)
@@ -172,9 +173,10 @@ def water_give(self, catching_dir, pos):
             self.right.open_gripper()
             self.right.goto_pose(RigidTransform(translation = [0.47, 0.04, 0.3], rotation = right_side_rotation))
         elif (pos == 2):
-            self.right.goto_pose(RigidTransform(translation = [0.57, 0.04, 0.3], rotation = right_side_rotation))
+            self.right.goto_pose(RigidTransform(translation = [0.63, 0.04, 0.2], rotation = right_side_rotation))
             time.sleep(3)
             self.right.open_gripper()
+            self.right.goto_pose(RigidTransform(translation = [0.63, 0.04, 0.3], rotation = right_side_rotation))
         else: # push
             self.right.goto_pose(RigidTransform(translation = [0.47, 0.04, 0.07], rotation = right_side_rotation))
             time.sleep(3)
@@ -227,11 +229,11 @@ def plate_catch(self, catching_dir, pos):
         self.right.close_gripper()
         self.right.goto_pose(RigidTransform(translation = [0.28, 0.04, 0.2], rotation = right_side_rotation))
     else:  # front
-        self.right.goto_pose(RigidTransform(translation = [0.33, 0, 0.2], rotation = right_front_rotation))
-        self.right.goto_pose(RigidTransform(translation = [0.33, 0, 0.058], rotation = right_front_rotation))
+        self.right.goto_pose(RigidTransform(translation = [0.3, 0, 0.2], rotation = right_front_rotation))
+        self.right.goto_pose(RigidTransform(translation = [0.3, 0, 0.07], rotation = right_front_rotation))
         time.sleep(3)
         self.right.close_gripper()
-        self.right.goto_pose(RigidTransform(translation = [0.33, 0, 0.2], rotation = right_front_rotation))
+        self.right.goto_pose(RigidTransform(translation = [0.3, 0, 0.2], rotation = right_front_rotation))
 
 def plate_give(self, catching_dir, pos):
     if (catching_dir == 1): # top
@@ -308,8 +310,8 @@ def plate_give(self, catching_dir, pos):
             self.right.goto_pose(RigidTransform(translation = [0.7, 0, 0.3], rotation = right_front_give_rotation))
             time.sleep(3)
             self.right.goto_pose(RigidTransform(translation = [0.7, 0, 0.3], rotation = right_front_rotation))
-            self.right.goto_pose(RigidTransform(translation = [0.33, 0, 0.2], rotation = right_front_rotation))
-            self.right.goto_pose(RigidTransform(translation = [0.33, 0, 0.058], rotation = right_front_rotation))
+            self.right.goto_pose(RigidTransform(translation = [0.3, 0, 0.2], rotation = right_front_rotation))
+            self.right.goto_pose(RigidTransform(translation = [0.3, 0, 0.07], rotation = right_front_rotation))
             time.sleep(3)
             self.right.open_gripper()
             self.right.goto_pose(RigidTransform(translation = [0.33, 0, 0.2], rotation = right_front_rotation))
@@ -329,3 +331,19 @@ right_front_rotation = rpy_to_wxyz(90, 0, 90)
 right_top_give_rotation = rpy_to_wxyz(90, 0, 210)
 right_side_give_rotation = rpy_to_wxyz(0, 30, 90)
 right_front_give_rotation = rpy_to_wxyz(90, 0, 120)
+
+if __name__ == '__main__':
+    y = YuMiRobot()
+    y.set_z('z50')
+    y.set_v(300)
+
+    print('robot_action.py')
+    y.open_grippers()
+    # y.right.goto_pose(RigidTransform(translation = [0.3, 0, 0.2], rotation = right_front_rotation))
+    plate_catch(y, 3, 2)
+
+
+    # plate_give(y, 3, 2)
+    # y.reset_home()
+    
+    y.stop()

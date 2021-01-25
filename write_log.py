@@ -7,7 +7,7 @@ import collections
 
 global file_name
 
-file_name = 'log_MINUK_210120.txt'
+file_name = 'log_BK_210122.txt'
 
 def write_log(action, obj, speed, catching_dir, pos, time_diff):
     log = open(file_name, 'a')
