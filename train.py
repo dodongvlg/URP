@@ -22,7 +22,7 @@ def rpy_to_wxyz(r, p, y):  # Change euler angle to quaternion
 
 def input_work_train(num):
     print("Train num: %d" %num)
-    write_log.write_log(1, 0, 0, 0, 0, time_diff)
+    write_log.write_log(1, 0, 0, 0, time_diff)
 
     if (num == 1):
         y.set_v(1500)
@@ -78,8 +78,8 @@ def input_work_train(num):
 
     elif (num == 5):
         y.set_v(300)
-        robot_action.bottle_catch(y, 2, 2)
-        robot_action.bottle_give(y, 2, 2)
+        robot_action.plate_catch(y)
+        robot_action.plate_drop(y)
 
     elif (num == 6):
         y.set_v(500)
@@ -126,8 +126,8 @@ def input_work_train(num):
 
     elif num == 10:
         y.set_v(150)
-        robot_action.bottle_catch(y, 3, 3)
-        robot_action.bottle_give(y, 3, 3)
+        robot_action.plate_push_catch(y)
+        robot_action.plate_push_give(y)
 
     time.sleep(1)
     os.system('play -nq -t alsa synth {} sine {}'.format(1, 440))
@@ -135,10 +135,10 @@ def input_work_train(num):
 
     y.reset_home()
     y.right.open_gripper()
-    write_log.write_log(3, 0, 0, 0, 0, time_diff)
+    write_log.write_log(3, 0, 0, 0, time_diff)
     time.sleep(5)
+    write_log.write_log(4, 0, 0, 0, time_diff)
     os.system('play -nq -t alsa synth {} sine {}'.format(1, 880))
-    write_log.write_log(4, 0, 0, 0, 0, time_diff)
 
 if __name__ == '__main__':
     ######################################################################
