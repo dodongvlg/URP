@@ -40,10 +40,9 @@ def plate_slide(self):
     self.right.goto_pose(RigidTransform(translation = [0.72, 0, 0.35], rotation = right_front_rotation))
     time.sleep(3)
     self.right.goto_pose(RigidTransform(translation = [0.75, 0, 0.35], rotation = right_front_give_rotation))
-    time.sleep(3)
-    self.right.goto_pose(RigidTransform(translation = [0.72, 0, 0.35], rotation = right_front_rotation))
-
-def plate_slide_2(self):
+    
+def plate_slide_2(self):    
+    # self.right.goto_pose(RigidTransform(translation = [0.72, 0, 0.35], rotation = right_front_rotation))
     self.right.goto_pose(RigidTransform(translation = [0.3, 0, 0.25], rotation = right_front_rotation))
     self.right.goto_pose(RigidTransform(translation = [0.3, 0, 0.07], rotation = right_front_rotation))
     time.sleep(3)
@@ -56,9 +55,10 @@ def plate_push_catch(self):
     time.sleep(3)
 
 def plate_push_give(self):
-    self.right.goto_pose(RigidTransform(translation = [0.67, 0, 0.07], rotation = right_front_rotation))
-    time.sleep(3)
-    self.right.goto_pose(RigidTransform(translation = [0.67, 0, 0.2], rotation = right_front_rotation))
+    self.right.goto_pose(RigidTransform(translation = [0.65, 0, 0.07], rotation = right_front_rotation))
+
+def plate_push_give_2(self):
+    self.right.goto_pose(RigidTransform(translation = [0.65, 0, 0.2], rotation = right_front_rotation))
 
 
 # example of rigid transform: RigidTransform(translation = [x_pos(back to front), y_pos(right to left), z_pos], rotation=[w, x, y, z])
@@ -76,7 +76,7 @@ right_front_give_rotation = rpy_to_wxyz(90, 0, 120)
 if __name__ == '__main__':
     y = YuMiRobot()
     y.set_z('z50')
-    y.set_v(1500)
+    y.set_v(450)
 
     print('robot_action.py')
     y.open_grippers()

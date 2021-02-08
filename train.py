@@ -128,6 +128,7 @@ def input_work_train(num):
         y.set_v(150)
         robot_action.plate_push_catch(y)
         robot_action.plate_push_give(y)
+        robot_action.plate_push_give_2(y)
 
     time.sleep(1)
     os.system('play -nq -t alsa synth {} sine {}'.format(1, 440))
@@ -163,7 +164,7 @@ if __name__ == '__main__':
     ######################################################################
     y.reset_home()
     y.open_grippers()
-    
+
     for i in range (10):
         input_work_train(i + 1)
         raw_input("Press Enter to continue...")

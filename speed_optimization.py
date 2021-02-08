@@ -64,8 +64,9 @@ def speed_optimizer():
     score_lines = f.readlines()
     f.close()
 
-    speed_names = ['b_c', 'b_g', 'w_c', 'w_g', 'p_c', 'p_g']
-    score_names = ['b_c_score', 'b_g_score', 'w_c_score', 'w_g_score', 'p_c_score', 'p_g_score']
+    speed_names = ['e_c', 'e_g', 'f_c', 'f_g', 'c_c', 'c_g', 'e_c_p', 'e_g_p', 'f_c_p', 'f_g_p', 'c_c_p', 'c_g_p']
+    score_names = ['e_c_score', 'e_g_score', 'f_c_score', 'f_g_score', 'c_c_score', 'c_g_score',
+                    'e_c_p_score', 'e_g_p_score', 'f_c_p_score', 'f_g_p_score', 'c_c_p_score', 'c_g_p_score']
     new_speeds = []
 
     for i in speed_names:
@@ -75,35 +76,59 @@ def speed_optimizer():
         vars()[str(i)] = []
 
     for line in speed_lines:
-        if ('bottle' in line):
-            if ('catching' in line):
-                vars()['b_c'].append(int(line.split(', ')[1]))
+        if ('empty' in line):
+            if ('catching' in line) and ('pushing' in line):
+                vars()['e_c_p'].append(int(line.split(', ')[1]))
+            elif ('giving' in line) and ('pushing' in line):
+                vars()['e_g_p'].append(int(line.split(', ')[1]))
+            elif ('catching' in line):
+                vars()['e_c'].append(int(line.split(', ')[1]))
             elif ('giving' in line):
-                vars()['b_g'].append(int(line.split(', ')[1]))
-        elif ('water' in line):
-            if ('catching' in line):
-                vars()['w_c'].append(int(line.split(', ')[1]))
+                vars()['e_g'].append(int(line.split(', ')[1]))
+        elif ('full' in line):
+            if ('catching' in line) and ('pushing' in line):
+                vars()['f_c_p'].append(int(line.split(', ')[1]))
+            elif ('giving' in line) and ('pushing' in line):
+                vars()['f_g_p'].append(int(line.split(', ')[1]))
+            elif ('catching' in line):
+                vars()['f_c'].append(int(line.split(', ')[1]))
             elif ('giving' in line):
-                vars()['w_g'].append(int(line.split(', ')[1]))
-        elif ('plate' in line):
-            if ('catching' in line):
-                vars()['p_c'].append(int(line.split(', ')[1]))
+                vars()['f_g'].append(int(line.split(', ')[1]))
+        elif ('cookie' in line):
+            if ('catching' in line) and ('pushing' in line):
+                vars()['c_c_p'].append(int(line.split(', ')[1]))
+            elif ('giving' in line) and ('pushing' in line):
+                vars()['c_g_p'].append(int(line.split(', ')[1]))
+            elif ('catching' in line):
+                vars()['c_c'].append(int(line.split(', ')[1]))
             elif ('giving' in line):
-                vars()['p_g'].append(int(line.split(', ')[1]))
+                vars()['c_g'].append(int(line.split(', ')[1]))
 
     for line in score_lines:
-        if ('catching, bottle' in line):
-            vars()['b_c_score'].append(float(line.split(', ')[-1].split(']')[0]))
-        elif ('giving, bottle' in line):
-            vars()['b_g_score'].append(float(line.split(', ')[-1].split(']')[0]))
-        elif ('catching, water' in line):
-            vars()['w_c_score'].append(float(line.split(', ')[-1].split(']')[0]))
-        elif ('giving, water' in line):
-            vars()['w_g_score'].append(float(line.split(', ')[-1].split(']')[0]))
-        elif ('catching, plate' in line):
-            vars()['p_c_score'].append(float(line.split(', ')[-1].split(']')[0]))
-        elif ('giving, plate' in line):
-            vars()['p_g_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        if ('catching, empty, hand' in line):
+            vars()['e_c_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('giving, empty, hand' in line):
+            vars()['e_g_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('catching, full, hand' in line):
+            vars()['f_c_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('giving, full, hand' in line):
+            vars()['f_g_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('catching, cookie, hand' in line):
+            vars()['c_c_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('giving, cookie, hand' in line):
+            vars()['c_g_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('catching, empty, push' in line):
+            vars()['e_c_p_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('giving, empty, push' in line):
+            vars()['e_g_p_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('catching, full, push' in line):
+            vars()['f_c_p_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('giving, full, push' in line):
+            vars()['f_g_p_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('catching, cookie, push' in line):
+            vars()['c_c_p_score'].append(float(line.split(', ')[-1].split(']')[0]))
+        elif ('giving, cookie, push' in line):
+            vars()['c_g_p_score'].append(float(line.split(', ')[-1].split(']')[0]))
 
     for i in speed_names:
         if (len(vars()[str(i)]) != 0):
