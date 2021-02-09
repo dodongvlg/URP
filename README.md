@@ -7,4 +7,4 @@ Codes for URP
 4. Run 'main.py' for test.
 - Choice 1: speed optimization with feedback
 - Choice 2: speed optimization without feedback
-- Choice 3: Actions for robot action evaluation
+- Choice 3: robot action evaluation
