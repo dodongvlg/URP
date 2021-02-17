@@ -23,6 +23,10 @@ def opt_linear(x):
     return 0.4 * x - 1.4
 
 def opt_log(x):
+    if x < 1:
+        return -1
+    elif x > 6:
+        return 1
     if x >= 3.5:
         temp = x - 2.5
         temp = np.log(temp)
@@ -77,27 +81,27 @@ def speed_optimizer():
 
     for line in speed_lines:
         if ('empty' in line):
-            if ('catching' in line) and ('pushing' in line):
+            if ('catching' in line) and ('push' in line):
                 vars()['e_c_p'].append(int(line.split(', ')[1]))
-            elif ('giving' in line) and ('pushing' in line):
+            elif ('giving' in line) and ('push' in line):
                 vars()['e_g_p'].append(int(line.split(', ')[1]))
             elif ('catching' in line):
                 vars()['e_c'].append(int(line.split(', ')[1]))
             elif ('giving' in line):
                 vars()['e_g'].append(int(line.split(', ')[1]))
         elif ('full' in line):
-            if ('catching' in line) and ('pushing' in line):
+            if ('catching' in line) and ('push' in line):
                 vars()['f_c_p'].append(int(line.split(', ')[1]))
-            elif ('giving' in line) and ('pushing' in line):
+            elif ('giving' in line) and ('push' in line):
                 vars()['f_g_p'].append(int(line.split(', ')[1]))
             elif ('catching' in line):
                 vars()['f_c'].append(int(line.split(', ')[1]))
             elif ('giving' in line):
                 vars()['f_g'].append(int(line.split(', ')[1]))
         elif ('cookie' in line):
-            if ('catching' in line) and ('pushing' in line):
+            if ('catching' in line) and ('push' in line):
                 vars()['c_c_p'].append(int(line.split(', ')[1]))
-            elif ('giving' in line) and ('pushing' in line):
+            elif ('giving' in line) and ('push' in line):
                 vars()['c_g_p'].append(int(line.split(', ')[1]))
             elif ('catching' in line):
                 vars()['c_c'].append(int(line.split(', ')[1]))
@@ -144,8 +148,8 @@ def speed_optimizer():
         print(str(i) + ' is', vars()[str(i)])
 
     for i in speed_names:
-        temp_speed = vars()['last_' + str(i)] + round(150 * opt_log(vars()[str(i) + '_score']))
-        vars()['new_' + str(i)] = int(np.median([150, 1500, temp_speed]))
+        temp_speed = vars()['last_' + str(i)] + round(200 * opt_log(vars()[str(i) + '_score']))
+        vars()['new_' + str(i)] = int(np.median([200, 1500, temp_speed]))
         print('last_' + str(i) + ' is', vars()['last_' + str(i)], ', new_' + str(i) + ' is', vars()['new_' + str(i)])
 
     for i in speed_names:
@@ -154,4 +158,4 @@ def speed_optimizer():
     return new_speeds
 
 if __name__ == '__main__':
-    speed_optimizer()
+    print(opt_log(6))

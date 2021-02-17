@@ -132,7 +132,7 @@ if __name__ == '__main__':
     # input_work_bottle(c_s, g_s, 2, 2)
     # input_work_water(c_s, g_s, 2, 2)
     # input_work_plate(c_s, g_s, 3, 2)
-    print(1)
+    # print(1)
     choice = raw_input("Choose task to do (1: speed with feedback, 2: speed without feedback, 3: robot action evaluation) : ")
 
     if (choice == '1'):
