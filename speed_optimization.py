@@ -23,19 +23,15 @@ def opt_linear(x):
     return 0.4 * x - 1.4
 
 def opt_log(x):
-    if x < 1:
-        return -1
-    elif x > 6:
-        return 1
     if x >= 3.5:
         temp = x - 2.5
         temp = np.log(temp)
-        temp *= 0.75
+        temp /= np.log(3.5)
         return temp
     else:
         temp = 4.5 - x
         temp = np.log(temp)
-        temp *= -0.75
+        temp /= -np.log(3.5)
         return temp
 
 def opt_points(x):
@@ -138,7 +134,7 @@ def speed_optimizer():
         if (len(vars()[str(i)]) != 0):
             vars()['last_' + str(i)] = vars()[str(i)][-1]
         else:
-            vars()['last_' + str(i)] = 300
+            vars()['last_' + str(i)] = 500
 
     for i in score_names:
         if (len(vars()[str(i)]) != 0):
@@ -148,8 +144,8 @@ def speed_optimizer():
         print(str(i) + ' is', vars()[str(i)])
 
     for i in speed_names:
-        temp_speed = vars()['last_' + str(i)] + round(200 * opt_log(vars()[str(i) + '_score']))
-        vars()['new_' + str(i)] = int(np.median([200, 1500, temp_speed]))
+        temp_speed = vars()['last_' + str(i)] + round(100 * opt_log(vars()[str(i) + '_score']))
+        vars()['new_' + str(i)] = int(np.median([300, 700, temp_speed]))
         print('last_' + str(i) + ' is', vars()['last_' + str(i)], ', new_' + str(i) + ' is', vars()['new_' + str(i)])
 
     for i in speed_names:
@@ -158,4 +154,7 @@ def speed_optimizer():
     return new_speeds
 
 if __name__ == '__main__':
-    print(opt_log(6))
+    for i in range (2, 13):
+        t = float(i) / 2
+        print(t)
+        print(opt_log(t))
